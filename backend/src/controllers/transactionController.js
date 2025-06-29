@@ -18,7 +18,6 @@ const addTransactions = async(req, res) => {
         RETURNING *
         `
         
-        console.log(transaction)
         return res.status(201).json({
             message: "transaction created successfully",
             success: true,
@@ -40,7 +39,6 @@ const getTransactions = async(req, res) => {
     
     try {
         const {userId} = req.params
-        console.log(userId)
 
         const transactions =  await sql`
         SELECT * FROM transactions WHERE user_id = ${userId} ORDER BY created_at DESC
@@ -67,7 +65,6 @@ const deleteTransaction = async(req, res) => {
 
     try {
         const {id} = req.params
-        console.log(id)
 
         if(!id || id.trim() === ""){
             return res.status(400).json({
